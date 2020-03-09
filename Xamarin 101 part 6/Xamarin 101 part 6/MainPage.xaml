@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Xamarin101part6.ViewModels"
+             x:Class="Xamarin_101_part_6.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <Grid ColumnSpacing="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Frame BackgroundColor="#A1CCD4" Grid.ColumnSpan="2" />
+        <Image Source="xamarin.png" Grid.ColumnSpan="2" BackgroundColor="#A1CCD4" Margin="0, 10, 0, 10" />
+
+        <Editor Text="{Binding TheNote}" Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Write something" />
+
+        <Button Command="{Binding SaveCommand}" Grid.Row="2" Grid.Column="0" Margin="10, 0, 0, 0" BackgroundColor="Green" TextColor="White" Text="Save" />
+        <Button Command="{Binding EraseCommand}" Grid.Row="2" Grid.Column="1" Margin="0, 0, 10, 0" BackgroundColor="Red" TextColor="White" Text="Delete" />
+
+        <CollectionView ItemsSource="{Binding AllNotes}" Grid.Row="3" Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="0" Padding="0">
+                        <Label Text="{Binding .}" Margin="0, 0, 0, 10" Padding="10, 20" BackgroundColor="Black" TextColor="White" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
